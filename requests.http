@@ -1,8 +1,13 @@
+//Consultas mascotas--------------------------------------------------------------------------
+
+//Busqueda de mascota
 GET http://127.0.0.1:4000/mascotas/buscar HTTP/1.1
 
+//Busqueda de mascota por id
 ###
 GET http://127.0.0.1:4000/mascotas/buscarId/2 HTTP/1.1
 
+//Creacion de mascota
 ###
 POST http://127.0.0.1:4000/mascotas/crear HTTP/1.1
 Content-type: application/json
@@ -24,9 +29,7 @@ Content-type: application/json
     "available_for_adoption": false
 }
 
-
-
-
+//Actualizacion de mascota
 ###
 PUT http://127.0.0.1:4000/mascotas/actualizar/2 HTTP/1.1
 Content-type: application/json
@@ -48,6 +51,63 @@ Content-type: application/json
     "available_for_adoption": true
 }
 
-
+//Eliminacion de mascota
 ###
 DELETE http://127.0.0.1:4000/mascotas/eliminar/2 HTTP/1.1
+
+
+
+//Consultas adoptante--------------------------------------------------------------------------
+
+//Busqueda de adoptante
+###
+GET http://127.0.0.1:4000/adoptantes/buscar HTTP/1.1
+
+//Busqueda de adoptante por id
+###
+GET http://127.0.0.1:4000/adoptantes/buscarId/2 HTTP/1.1
+
+//Creacion de adoptante
+###
+POST http://127.0.0.1:4000/adoptantes/crear HTTP/1.1
+Content-type: application/json
+
+{
+    "first_name": "José",
+    "last_name": "Martínez",
+    "email": "jose.martinez@example.com",
+    "phone": "555-123-4567",
+    "address": "Boulevard de la Libertad 456",
+    "birth_date": "1978-11-30",
+    "occupation": "Arquitecto",
+    "housing_type": "Casa",
+    "has_other_pets": true,
+    "type_of_other_pets": "Gato",
+    "adoption_reason": "Deseo adoptar un compañero para mi gato"
+}
+
+
+
+//Actualizacion de adoptante
+###
+PUT http://127.0.0.1:4000/adoptantes/actualizar/2 HTTP/1.1
+Content-type: application/json
+
+{
+    "first_name": "María",
+    "last_name": "Fernández",
+    "email": "maria.fernandez@example.com",
+    "phone": "098-765-4321",
+    "address": "Avenida Siempre Viva 742",
+    "birth_date": "1990-03-15",
+    "occupation": "Docente",
+    "housing_type": "Apartamento",
+    "has_other_pets": false,
+    "type_of_other_pets": null,
+    "adoption_reason": "Quiero ofrecer un hogar a un animal necesitado"
+}
+
+
+//Eliminacion de adoptante
+###
+DELETE http://127.0.0.1:4000/adoptantes/eliminar/2 HTTP/1.1
