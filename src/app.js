@@ -2,7 +2,7 @@ import express from "express";
 import { routerMascotas } from "./rutas/mascotasRouter.js";
 import { routerAdoptantes } from "./rutas/adoptantesRouter.js";
 import { routerSolicitudes } from "./rutas/solicitudesRouter.js";
-//import { routerEmpleados } from "./rutas/empleadosRouter.js";
+import { routerEmpleados } from "./rutas/empleadosRouter.js";
 import {db} from "./database/conexion.js";
 import cors from "cors";
 //Crear instancia de Express
@@ -31,8 +31,11 @@ app.use("/mascotas",routerMascotas);
 //Llamar rutas de adoptantes
 app.use("/adoptantes",routerAdoptantes);
 
-//Llamar rutas de adoptantes
+//Llamar rutas de solicitudes
 app.use("/solicitudes",routerSolicitudes);
+
+//Llamar rutas de empleados
+app.use("/empleados",routerEmpleados);
 
 //Puerto de Servidor
 const PORT=4000;

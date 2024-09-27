@@ -1,7 +1,7 @@
 import { solicitudes } from "../modelos/solicitudesModelo.js";
 import { mascotas } from "../modelos/mascotasModelo.js"; // Importa también el modelo de mascotas
 import { adoptantes } from "../modelos/adoptantesModelo.js"; // Importa el modelo de adoptantes
-//import { empleados } from "../modelos/empleadosModelo.js"; // Importa el modelo de empleados
+import { empleados } from "../modelos/empleadosModelo.js"; // Importa el modelo de empleados
 
 const crear = async (req, res) => {
     try {
@@ -59,7 +59,7 @@ const crear = async (req, res) => {
         };
 
         // Usar Sequelize para crear el recurso en la base de datos
-        const resultado = await adoptionRequests.create(dataset);
+        const resultado = await solicitudes.create(dataset);
         return res.status(201).json({
             mensaje: "Registro de Solicitud de Adopción creado con éxito",
             data: resultado
@@ -115,36 +115,28 @@ const buscarId = (req, res) => {
 // Actualizar Solicitud de Adopción
 const actualizar = (req, res) => {
     const id = req.params.id;
-    if (!req.body.first_name && !req.body.last_name && !req.body.email) {
+
+    if (!req.body.pet_id && !req.body.adopter_id && !req.body.employee_id && !req.body.status) {
         res.status(400).json({
             mensaje: "No se encontraron datos de Solicitud de Adopción para actualizar"
         });
         return;
     } else {
-        const first_name = req.body.first_name || null;  // Campo opcional
-        const last_name = req.body.last_name || null;    // Campo opcional
-        const email = req.body.email || null;            // Campo opcional
-        const phone = req.body.phone || null;            // Campo opcional
-        const address = req.body.address || null;        // Campo opcional
-        const birth_date = req.body.birth_date || null;  // Campo opcional
-        const occupation = req.body.occupation || null;  // Campo opcional
-        const housing_type = req.body.housing_type || null; // Campo opcional
-        const has_other_pets = req.body.has_other_pets || null; // Campo opcional
-        const type_of_other_pets = req.body.type_of_other_pets || null; // Campo opcional
-        const adoption_reason = req.body.adoption_reason || null; // Campo opcional
+        const pet_id = req.body.pet_id || null;          // Campo opcional
+        const adopter_id = req.body.adopter_id || null;  // Campo opcional
+        const employee_id = req.body.employee_id || null; // Campo opcional
+        const request_date = req.body.request_date || null; // Campo opcional
+        const status = req.body.status || null;            // Campo opcional
+        const approval_date = req.body.approval_date || null; // Campo opcional
+        // No se necesitan los campos de adoptante ya que se están utilizando otros
 
         solicitudes.update({
-            first_name,
-            last_name,
-            email,
-            phone,
-            address,
-            birth_date,
-            occupation,
-            housing_type,
-            has_other_pets,
-            type_of_other_pets,
-            adoption_reason
+            pet_id,
+            adopter_id,
+            employee_id,
+            request_date,
+            status,
+            approval_date
         }, { where: { id } })
         .then((resultado) => {
             res.status(200).json({
@@ -155,11 +147,12 @@ const actualizar = (req, res) => {
         .catch((err) => {
             res.status(500).json({
                 tipo: 'error',
-                mensaje: `Error al actualizar registro de Adoptante: ${err.message}`
+                mensaje: `Error al actualizar registro de Solicitud de Adopción: ${err.message}`
             });
         });
     }
 }
+
 
 
 //Eliminar Solicitud de Adopción

@@ -131,11 +131,11 @@ Content-Type: application/json
 
 {
     "pet_id": 1,
-    "adopter_id": 2,
-    "employee_id": 3,
+    "adopter_id": 1,
+    "employee_id": 1,
     "request_date": "2024-09-26",
     "status": "pending",
-    "comments": "Estoy emocionado por adoptar esta mascota."
+    
 }
 
 
@@ -147,12 +147,12 @@ PUT http://127.0.0.1:4000/solicitudes/actualizar/2 HTTP/1.1
 Content-Type: application/json
 
 {
-    "pet_id": 4,
-    "adopter_id": 5,
-    "employee_id": 1,
+    "pet_id": 1,
+    "adopter_id": 1,
+    "employee_id": 2,
     "request_date": "2024-09-26",
     "status": "pending",
-    "comments": "Estoy interesado en adoptar a esta mascota para compañía."
+    
 }
 
 
@@ -160,3 +160,53 @@ Content-Type: application/json
 //Eliminacion de Solicitud
 ###
 DELETE http://127.0.0.1:4000/solicitudes/eliminar/2 HTTP/1.1
+
+
+
+//Consultas Empleado--------------------------------------------------------------------------
+
+//Busqueda de Empleado
+###
+GET http://127.0.0.1:4000/empleados/buscar HTTP/1.1
+
+//Busqueda de Empleado por id
+###
+GET http://127.0.0.1:4000/empleados/buscarId/2 HTTP/1.1
+
+//Creacion de Empleado
+###
+POST http://127.0.0.1:4000/empleados/crear HTTP/1.1
+Content-Type: application/json
+
+{
+    "full_name": "Lucía Fernández",
+    "position": "Coordinadora de Eventos",
+    "phone": "555-654-3210",
+    "email": "lucia.fernandez@example.com",
+    "hire_date": "2021-11-10"
+}
+
+
+
+
+
+
+//Actualizacion de Empleado
+###
+PUT http://127.0.0.1:4000/empleados/actualizar/2 HTTP/1.1
+Content-Type: application/json
+
+{
+    "full_name": "Carlos Gómez",
+    "position": "Asistente de Adopciones",
+    "phone": "555-321-4567",
+    "email": "carlos.gomez@example.com",
+    "hire_date": "2023-05-20"
+}
+
+
+
+
+//Eliminacion de Empleado unicamente si no esta vinculado a ninguna solicitud
+###
+DELETE http://127.0.0.1:4000/empleados/eliminar/2 HTTP/1.1
