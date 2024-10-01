@@ -1,6 +1,6 @@
 //Consultas mascotas--------------------------------------------------------------------------
 
-//Busqueda de mascota
+//Busqueda de adoptantes
 GET http://127.0.0.1:4000/mascotas/buscar HTTP/1.1
 
 //Busqueda de mascota por id
@@ -65,7 +65,7 @@ GET http://127.0.0.1:4000/adoptantes/buscar HTTP/1.1
 
 //Busqueda de adoptante por id
 ###
-GET http://127.0.0.1:4000/adoptantes/buscarId/2 HTTP/1.1
+GET http://127.0.0.1:4000/adoptantes/buscarId/3 HTTP/1.1
 
 //Creacion de adoptante
 ###
@@ -85,7 +85,6 @@ Content-type: application/json
     "type_of_other_pets": "Gato",
     "adoption_reason": "Deseo adoptar un compañero para mi gato"
 }
-
 
 
 //Actualizacion de adoptante
@@ -185,10 +184,6 @@ Content-Type: application/json
     "email": "lucia.fernandez@example.com",
     "hire_date": "2021-11-10"
 }
-
-
-
-
 
 
 //Actualizacion de Empleado

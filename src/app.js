@@ -21,9 +21,16 @@ db.authenticate().then(()=>{
 
 
 //Definir Rutas
+// Definir Rutas
 app.get('/', (req, res) => {
-    res.send('Hola Sitio Principal');
+    res.send(`
+        <h1> 🐾 ¡Bienvenido a Furry Friends! 🐾 </h1>
+        <p>El hogar donde los sueños de amistad se hacen realidad.</p>
+        <p>En Furry Friends, nos dedicamos a transformar vidas, nuestra misión es rescatar y brindar un nuevo comienzo a aquellos animales que anhelan un cariño sincero. 
+        Cada uno de nuestros adorables compañeros peludos está listo para ofrecer amor incondicional y alegrar tu hogar, aquí, cada ladrido y ronroneo cuenta una historia de esperanza y felicidad.</p>
+    `);
 });
+
 
 //Llamar rutas de mascotas
 app.use("/mascotas",routerMascotas);

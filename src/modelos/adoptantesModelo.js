@@ -58,6 +58,4 @@ const adoptantes = db.define("adopters", {
   timestamps: false
 });
 
-
-
 export { adoptantes }
