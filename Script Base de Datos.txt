@@ -1,0 +1,59 @@
+-- Create the initial tables
+
+CREATE TABLE pets (
+  id BIGINT AUTO_INCREMENT PRIMARY KEY,
+  name TEXT NOT NULL,
+  species TEXT NOT NULL,
+  breed TEXT,
+  age INT,
+  description TEXT,
+  status ENUM('available', 'adopted') NOT NULL,
+  gender ENUM('masculino', 'femenino'),
+  size ENUM('pequeño', 'mediano', 'grande'),
+  weight DECIMAL(10, 2),
+  entry_date DATE,
+  vaccinated BOOLEAN,
+  neutered BOOLEAN,
+  medical_conditions TEXT,
+  available_for_adoption BOOLEAN
+);
+
+CREATE TABLE adopters (
+  id BIGINT AUTO_INCREMENT PRIMARY KEY,
+  first_name TEXT NOT NULL,
+  last_name TEXT NOT NULL,
+  email TEXT UNIQUE NOT NULL,
+  phone TEXT,
+  address TEXT,
+  birth_date DATE,
+  occupation TEXT,
+  housing_type TEXT,
+  has_other_pets BOOLEAN,
+  type_of_other_pets TEXT,
+  adoption_reason TEXT
+);
+
+CREATE TABLE adoption_requests (
+  id BIGINT AUTO_INCREMENT PRIMARY KEY,
+  pet_id BIGINT,
+  adopter_id BIGINT,
+  request_date DATE NOT NULL DEFAULT CURRENT_DATE,
+  status ENUM('pending', 'approved', 'rejected') NOT NULL,
+  approval_date DATE,
+  employee_id BIGINT,
+  CONSTRAINT fk_pet_id FOREIGN KEY (pet_id) REFERENCES pets(id),
+  CONSTRAINT fk_adopter_id FOREIGN KEY (adopter_id) REFERENCES adopters(id)
+);
+
+CREATE TABLE employees (
+  id BIGINT AUTO_INCREMENT PRIMARY KEY,
+  full_name TEXT NOT NULL,
+  position TEXT NOT NULL,
+  phone TEXT,
+  email TEXT UNIQUE,
+  hire_date DATE
+);
+
+-- Add foreign key constraint for employee_id in adoption_requests
+ALTER TABLE adoption_requests
+ADD CONSTRAINT fk_employee_id FOREIGN KEY (employee_id) REFERENCES employees(id);
